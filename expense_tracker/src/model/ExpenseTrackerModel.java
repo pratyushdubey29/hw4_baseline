@@ -9,7 +9,7 @@ public class ExpenseTrackerModel {
   //encapsulation - data integrity
   private List<Transaction> transactions;
   private List<Integer> matchedFilterIndices;
-
+  private List<ExpenseTrackerModelListener> listenerList = new ArrayList<>();
   // This is applying the Observer design pattern.                          
   // Specifically, this is the Observable class. 
     
@@ -70,9 +70,10 @@ public class ExpenseTrackerModel {
    *         returns true. If not, returns false.
    */   
   public boolean register(ExpenseTrackerModelListener listener) {
-      // For the Observable class, this is one of the methods.
-      //
-      // TODO
+      if (listener != null && !listenerList.contains(listener)) {
+          listenerList.add(listener);
+          return true;
+      }
       return false;
   }
 
@@ -90,9 +91,12 @@ public class ExpenseTrackerModel {
       return false;
   }
 
-  protected void stateChanged() {
+  public void stateChanged() {
       // For the Observable class, this is one of the methods.
       //
       //TODO
+      for (ExpenseTrackerModelListener listener : listenerList) {
+          listener.update(this);
+      }
   }
 }
