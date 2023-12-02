@@ -7,11 +7,6 @@ import java.util.List;
  * The ExpenseTrackerModel class represents a model managing addition, removal, and filtering of transactions,
  * which are stored in the transactions object. It employs the Observable design pattern and
  * notifies the listeners that are registered when a state change is observed.
- *
- * @author [Heather Conboy]
- * @version [hw4]
- * @see Transaction
- * @see ExpenseTrackerModelListener
  */
 public class ExpenseTrackerModel {
 
